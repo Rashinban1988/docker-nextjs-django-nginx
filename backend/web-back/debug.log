@@ -1,0 +1,24 @@
+(0.005) 
+                SELECT VERSION(),
+                       @@sql_mode,
+                       @@default_storage_engine,
+                       @@sql_auto_is_null,
+                       @@lower_case_table_names,
+                       CONVERT_TZ('2001-01-01 01:00:00', 'UTC', 'UTC') IS NOT NULL
+            ; args=None; alias=default
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None; alias=default
+(0.004) SELECT `todo_todo`.`id`, `todo_todo`.`title`, `todo_todo`.`body` FROM `todo_todo`; args=(); alias=default
+(0.003) 
+                SELECT VERSION(),
+                       @@sql_mode,
+                       @@default_storage_engine,
+                       @@sql_auto_is_null,
+                       @@lower_case_table_names,
+                       CONVERT_TZ('2001-01-01 01:00:00', 'UTC', 'UTC') IS NOT NULL
+            ; args=None; alias=default
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None; alias=default
+(0.040) SELECT `todo_todo`.`id`, `todo_todo`.`title`, `todo_todo`.`body` FROM `todo_todo`; args=(); alias=default
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None; alias=default
+(0.000) SELECT `todo_todo`.`id`, `todo_todo`.`title`, `todo_todo`.`body` FROM `todo_todo`; args=(); alias=default
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None; alias=default
+(0.001) SELECT `todo_todo`.`id`, `todo_todo`.`title`, `todo_todo`.`body` FROM `todo_todo`; args=(); alias=default
