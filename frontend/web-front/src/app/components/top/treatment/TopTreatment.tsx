@@ -1,7 +1,7 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faTag, faEnvelope, faBook, faComments } from '@fortawesome/free-solid-svg-icons';
-import Image from 'next/image';
-import { Header } from '../header/Header';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHome, faTag, faEnvelope, faBook, faComments } from '@fortawesome/free-solid-svg-icons'
+import Image from 'next/image'
+import { Header } from '../header/Header'
 
 const treatments = [
   { href: "#", icon: faHome, title: "ポキポキしない、やさしい", subtitle: "骨盤・骨格矯正", detail: "当院では「アクティベータ・メソッド」・「トムソンテクニック」というカイロプラクティックのテクニックを用いて骨盤矯正・骨格矯正を行っております。いずれもボキボキせず痛くない安全な施術ですのでお子様からご年配の方まで安心して受けていただけます。", src: "/voice1.jpg", alt: "voice1" },
@@ -9,7 +9,7 @@ const treatments = [
   { href: "#", icon: faHome, title: "ポキポキしない、やさしい", subtitle: "骨盤・骨格矯正", detail: "当院では「アクティベータ・メソッド」・「トムソンテクニック」というカイロプラクティックのテクニックを用いて骨盤矯正・骨格矯正を行っております。いずれもボキボキせず痛くない安全な施術ですのでお子様からご年配の方まで安心して受けていただけます。", src: "/voice3.jpg", alt: "voice3"},
 ]
 
-export const Treatment = () => {
+export const TopTreatment = () => {
   return (
     <section className="mx-auto pt-24 w-full text-slate max-w-6xl">
 

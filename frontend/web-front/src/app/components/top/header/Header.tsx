@@ -1,21 +1,21 @@
 'use client'
-import React, { useState, useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faTag, faEnvelope, faBook, faComments } from '@fortawesome/free-solid-svg-icons';
+import React, { useState, useEffect } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHome, faTag, faEnvelope, faBook, faComments } from '@fortawesome/free-solid-svg-icons'
 
 type HeaderProps = {
-  fixed?: boolean;
-};
+  fixed?: boolean
+}
 
 type HeaderStyle = {
-  transition?: string;
-  position?: string;
-  top?: string;
-  left?: string;
-  visibility?: string;
-  opacity?: number;
-  transform?: string;
-};
+  transition?: string
+  position?: string
+  top?: string
+  left?: string
+  visibility?: string
+  opacity?: number
+  transform?: string
+}
 
 const navItems = [
   { href: "#", icon: faHome, text: "HOME" },
@@ -23,36 +23,36 @@ const navItems = [
   { href: "#", icon: faEnvelope, text: "お問い合わせ" },
   { href: "#", icon: faBook, text: "ゆるふわ日記" },
   { href: "#", icon: faComments, text: "お客様の声" },
-];
+]
 
 export const Header = ({ fixed = false }: HeaderProps) => {
-  const [isSticky, setSticky] = useState(false);
+  const [isSticky, setSticky] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
       // 画面の高さを超えたかどうかをチェック
-      const shouldBeSticky = window.scrollY > window.innerHeight;
+      const shouldBeSticky = window.scrollY > window.innerHeight
       if (shouldBeSticky !== isSticky) {
-        setSticky(shouldBeSticky);
+        setSticky(shouldBeSticky)
       }
     }
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll)
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [isSticky]);
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [isSticky])
 
-  let headerStyle: HeaderStyle = { transition: 'opacity 0.5s, visibility 0.5s, transform 0.5s' }; // トランジションを常に適用
+  let headerStyle: HeaderStyle = { transition: 'opacity 0.5s, visibility 0.5s, transform 0.5s' } // トランジションを常に適用
   if (!fixed) {
-    headerStyle = {};
+    headerStyle = {}
   } else if (fixed && isSticky) {
-    headerStyle = { position: 'fixed', top: '0px', left: '0px', visibility: 'visible', opacity: 1, transform: 'translateY(0)', transition: 'opacity 0.5s, visibility 0.5s, transform 0.5s' };
+    headerStyle = { position: 'fixed', top: '0px', left: '0px', visibility: 'visible', opacity: 1, transform: 'translateY(0)', transition: 'opacity 0.5s, visibility 0.5s, transform 0.5s' }
   } else {
-    headerStyle = { position: 'fixed', top: '0px', left: '0px', opacity: 0, transform: 'translateY(-100px)', transition: 'opacity 0.5s, visibility 0.5s, transform 0.5s' };
+    headerStyle = { position: 'fixed', top: '0px', left: '0px', opacity: 0, transform: 'translateY(-100px)', transition: 'opacity 0.5s, visibility 0.5s, transform 0.5s' }
   }
-  const bgColor = (fixed && isSticky) ? 'bg-white' : 'bg-transparent';
+  const bgColor = (fixed && isSticky) ? 'bg-white' : 'bg-transparent'
 
   return (
     <header style={ headerStyle } className={`w-full h-24 ${bgColor} text-white p-4`}>
