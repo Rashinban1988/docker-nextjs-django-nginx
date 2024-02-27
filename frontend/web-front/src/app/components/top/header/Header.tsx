@@ -53,9 +53,10 @@ export const Header = ({ fixed = false }: HeaderProps) => {
     headerStyle = { position: 'fixed', top: '0px', left: '0px', opacity: 0, transform: 'translateY(-100px)', transition: 'opacity 0.5s, visibility 0.5s, transform 0.5s' }
   }
   const bgColor = (fixed && isSticky) ? 'bg-white' : 'bg-transparent'
+  const boxShadow = (fixed && isSticky) ? 'shadow-sm shadow-slate-600' : '';
 
   return (
-    <header style={ headerStyle } className={`w-full h-24 ${bgColor} text-white p-4`}>
+    <header style={ headerStyle } className={`w-full h-24 ${bgColor} ${boxShadow} text-white p-4`}>
       <nav className="w-full max-w-6xl mx-auto h-full">
         <ul className="w-full px-64 flex justify-between items-center space-x-4 text-slate-700">
           {navItems.map((item, index) => (
