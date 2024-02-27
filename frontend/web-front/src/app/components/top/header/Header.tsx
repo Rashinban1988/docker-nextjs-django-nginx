@@ -7,6 +7,16 @@ type HeaderProps = {
   fixed?: boolean;
 };
 
+type HeaderStyle = {
+  transition?: string;
+  position?: string;
+  top?: string;
+  left?: string;
+  visibility?: string;
+  opacity?: number;
+  transform?: string;
+};
+
 const navItems = [
   { href: "#", icon: faHome, text: "HOME" },
   { href: "#", icon: faTag, text: "料金表" },
@@ -25,22 +35,22 @@ export const Header = ({ fixed = false }: HeaderProps) => {
       if (shouldBeSticky !== isSticky) {
         setSticky(shouldBeSticky);
       }
-
-      window.addEventListener('scroll', handleScroll);
-
-      return () => {
-        window.removeEventListener('scroll', handleScroll);
-      };
     }
-  }, []);
 
-  let headerStyle = {};
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isSticky]);
+
+  let headerStyle: HeaderStyle = { transition: 'opacity 0.5s, visibility 0.5s, transform 0.5s' }; // トランジションを常に適用
   if (!fixed) {
     headerStyle = {};
   } else if (fixed && isSticky) {
-    headerStyle = { position: 'fixed', top: '0px', left: '0px' };
+    headerStyle = { position: 'fixed', top: '0px', left: '0px', visibility: 'visible', opacity: 1, transform: 'translateY(0)', transition: 'opacity 0.5s, visibility 0.5s, transform 0.5s' };
   } else {
-    headerStyle = { display: 'none' };
+    headerStyle = { position: 'fixed', top: '0px', left: '0px', opacity: 0, transform: 'translateY(-100px)', transition: 'opacity 0.5s, visibility 0.5s, transform 0.5s' };
   }
   const bgColor = (fixed && isSticky) ? 'bg-white' : 'bg-transparent';
 
