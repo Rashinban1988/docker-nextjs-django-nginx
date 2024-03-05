@@ -19,7 +19,7 @@ export const TopHero = () => {
       <div className="mt-12 w-full max-w-6xl mx-auto grid gap-16 grid-cols-3">
         {images.map((image, index) => (
           <div key={index}>
-            <img src={image.src} alt={image.alt} className="shadow-lg shadow-slate-600 rounded-xl w-full h-60 object-cover" />
+            <img src={image.src} alt={image.alt} className="shadow-md shadow-slate-600 rounded-[32px] w-full h-56 object-cover" />
           </div>
         ))}
       </div>

@@ -42,7 +42,7 @@ export const TopTreatment = () => {
               </p>
             </div>
             <div className="mx-auto pt-4 w-5/6">
-              <img src={treatment.src} alt={treatment.alt} class="aspect-square rounded-3xl shadow-lg shadow-slate-600"/>
+              <img src={treatment.src} alt={treatment.alt} class="aspect-square rounded-3xl shadow-md shadow-slate-600"/>
             </div>
           </div>
         ))}
