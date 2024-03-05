@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faTag, faEnvelope, faBook, faComments } from '@fortawesome/free-solid-svg-icons'
+import Link from 'next/link'
 
 type HeaderProps = {
   fixed?: boolean
@@ -18,8 +19,8 @@ type HeaderStyle = {
 }
 
 const navItems = [
-  { href: "#", icon: faHome, text: "HOME" },
-  { href: "#", icon: faTag, text: "料金表" },
+  { href: "/", icon: faHome, text: "HOME" },
+  { href: "/ryokin", icon: faTag, text: "料金表" },
   { href: "#", icon: faEnvelope, text: "お問い合わせ" },
   { href: "#", icon: faBook, text: "ゆるふわ日記" },
   { href: "#", icon: faComments, text: "お客様の声" },
@@ -58,14 +59,14 @@ export const Header = ({ fixed = false }: HeaderProps) => {
   return (
     <header style={ headerStyle } className={`w-full h-24 ${bgColor} ${boxShadow} text-white p-4`}>
       <nav className="w-full max-w-6xl mx-auto h-full">
-        <ul className="w-full px-64 flex justify-between items-center space-x-4 text-slate-700">
+        <ul className="w-full px-64 flex justify-between items-center space-x-4 text-slate-600">
           {navItems.map((item, index) => (
-            <a href={item.href} key={index} className="hover:text-slate-500 group">
+            <Link href={item.href} key={index} className="group">
               <li className="flex flex-col w-24 justify-center items-center">
                 <FontAwesomeIcon icon={item.icon} style={{ margin: '0 auto 10', width: '2rem', height: '2rem' }} className="group-hover:animate-bounce" />
                 {item.text}
               </li>
-            </a>
+            </Link>
           ))}
         </ul>
       </nav>
