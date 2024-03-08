@@ -19,5 +19,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('todo.urls'))  # 追加
+    path('api/', include('todo.urls')),  # 追加
+    path('api/transcription', include('transcription.urls'))  # 追加
 ]
