@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, CSSProperties } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faTag, faEnvelope, faBook, faComments } from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link'
@@ -45,7 +45,7 @@ export const Header = ({ fixed = false }: HeaderProps) => {
     }
   }, [isSticky])
 
-  let headerStyle: HeaderStyle = { transition: 'opacity 0.5s, visibility 0.5s, transform 0.5s' } // トランジションを常に適用
+  let headerStyle: CSSProperties = { transition: 'opacity 0.5s, visibility 0.5s, transform 0.5s' } // トランジションを常に適用
   if (!fixed) {
     headerStyle = {}
   } else if (fixed && isSticky) {
