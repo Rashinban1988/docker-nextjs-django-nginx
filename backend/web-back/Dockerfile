@@ -1,6 +1,9 @@
 # set base image
 FROM python:3.9
 
+# Install ffmpeg
+RUN apt-get update && apt-get install -y ffmpeg
+
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
