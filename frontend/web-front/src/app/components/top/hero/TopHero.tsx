@@ -13,13 +13,13 @@ export const TopHero = () => {
   return (
     <section className="pt-32 h-full text-white">
       <div className="mx-auto mb-12 w-96">
-          <img src="/main-image.jpg" alt="bg" objectFit="contain" className="w-full" />
+        <Image src="/main-image.jpg" alt="bg" layout="fill" objectFit="contain" />
       </div>
       <Header fixed={false} />
       <div className="mt-12 w-full max-w-6xl mx-auto grid gap-16 grid-cols-3">
         {images.map((image, index) => (
           <div key={index}>
-            <img src={image.src} alt={image.alt} className="shadow-md shadow-slate-600 rounded-[32px] w-full h-56 object-cover" />
+            <Image src={image.src} alt={image.alt} layout="responsive" width={700} height={394} className="shadow-md shadow-slate-600 rounded-[32px]" />
           </div>
         ))}
       </div>
