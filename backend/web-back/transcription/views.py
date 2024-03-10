@@ -115,7 +115,7 @@ def split_audio_file(file_path, output_folder):
 # if not input_file_path:
 #     print("ファイルが選択されなかった")
 #     exit()
-input_file_path = "/code/transcription/sampleSuper.mp3"
-output_folder_path = "/code/transcription/output_folder"
-# 音声ファイルを分割&音声変換
-split_audio_file(input_file_path, output_folder_path)
+# input_file_path = "/code/transcription/sampleSuper.mp3"
+# output_folder_path = "/code/transcription/output_folder"
+# # 音声ファイルを分割&音声変換
+# split_audio_file(input_file_path, output_folder_path)
