@@ -2,3 +2,6 @@
 __pycache__
 node_modules
 mysql_volume/**
+
+backend/web-back/debug.log
+backend/web-back/uploads/**
