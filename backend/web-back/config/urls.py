@@ -37,7 +37,6 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('todo.urls')),  # 追加
-    path('api/transcription/', include('transcription.urls')) , # 追加
     path('api/spokenMaterial/', include('spokenMaterial.urls')) , # 追加
 
     # api-swagger

@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     'todo.apps.TodoConfig',
     'transcription.apps.TranscriptionConfig',
     'spokenMaterial.apps.SpokenmaterialConfig',
+
+    'polls',
 ]
 
 MIDDLEWARE = [
@@ -93,8 +95,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'todoList',  # Docker Composeで設定したデータベース名
+        'USER': 'user',  # Docker Composeで設定したユーザー名
+        'PASSWORD': 'password',  # Docker Composeで設定したパスワード
+        'HOST': 'db',  # Docker Composeのサービス名
+        'PORT': '3306',
     }
 }
 
@@ -183,5 +189,42 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
+        '': {  # これにより全てのロガーが対象になる
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': False,  # 他のロガーへの伝播を防ぐ
+        },
     },
 }
+
+# Celery Configuration
+# CELERY_BROKER_URL = 'amqp://user:password@rabbitmq//'
+# CELERY_RESULT_BACKEND = 'redis://redis'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': 'redis://redis'
+    }
+}
+
+# Celery configurations
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZZER = 'json'
+
+# 'amqp://guest:guest@localhost//'
+# celeryを動かすための設定ファイル
+CELERY_BROKER_URL = "redis://redis"
+CELERY_CACHE_BACKEND = "django-cache"
+CELERY_RESULT_EXTENDED = True
+
+# CELERYD_CONCURRENCY=1なので、１こずつキューを捌いていく
+# ここはCPU数に合わせていくのがよい
+CELERYD_CONCURRENCY = 1
+
+CELERYD_LOG_FILE = "./celeryd.log"
+
+# CELERYD_LOG_LEVELをINFOにしておくと、
+# タスクの標準出力もログ(celeryd.log)に書かれる
+CELERYD_LOG_LEVEL = "INFO"

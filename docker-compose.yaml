@@ -18,6 +18,7 @@ services:
       - DJANGO_SETTINGS_MODULE=config.local_settings
     depends_on:
       - db
+
   backend-server:
     container_name: nginx_back
     build:
@@ -31,6 +32,7 @@ services:
       - web-back
     networks:
       - backend_network
+
   db:
     container_name: django-next-mysql
     build: ./mysql
@@ -49,19 +51,46 @@ services:
     networks:
       - backend_network
 
-  # web-front:
-  #   container_name: node-nginx-frontend
-  #   build:
-  #     context: ./frontend/web-front/.
-  #     dockerfile: Dockerfile
-  #   volumes:
-  #     - ./frontend/web-front:/home/app/frontend
-  #     - /home/app/frontend/node_modules
-  #     - /home/app/frontend/.next
-  #   ports:
-  #     - 80:80
-  #   environment:
-  #     - CHOKIDAR_USEPOLLING=true
+  celery:
+    container_name: celery
+    tty: true
+    build:
+      context: ./backend/web-back/.
+    volumes:
+      - ./backend/web-back/.:/usr/src/app
+    command: celery -A config worker -l info
+    depends_on:
+      - web-back
+      - redis
+    networks:
+      - backend_network
+
+  monitor:
+    container_name: monitor
+    tty: true
+    build:
+      context: ./backend/web-back/.
+    volumes:
+      - ./backend/web-back/.:/usr/src/app
+    ports:
+      - 5555:5555
+    command: celery -A config flower --port=5555
+    depends_on:
+      - web-back
+      - redis
+    networks:
+      - backend_network
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: always
+    tty: true
+    ports:
+      - 6379:6379
+    networks:
+      - backend_network
+
   front-prod:
     container_name: front-prod
     build:
@@ -94,19 +123,22 @@ services:
       - /app/.next
     networks:
       - frontend_network
+
   frontend-server:
     container_name: nginx_front
-    build: 
+    build:
       context: ./frontend/nginx/.
       dockerfile: Dockerfile
     ports:
       - 80:80
     networks:
       - frontend_network
+
 networks:
   backend_network:
     driver: bridge
   frontend_network:
     driver: bridge
+
 volumes:
   static_volume:
